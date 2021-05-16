@@ -28,6 +28,16 @@
   color: #61dafb;
 }
 
+:root {
+  --page-bg: #eee7be;
+  --primary: #173f5f;
+  --button-bg: #20639b;
+  --error: #ed553b;
+  --secondary: #3caea3;
+  --dark-text: #444;
+  --light-text: #fff;
+}
+
 body {
   background: var(--page-bg);
   margin: 0;
@@ -84,6 +94,14 @@ nav {
 }
 .btn:first-child {
   margin-left: 0;
+}
+
+.btn > svg:first-child {
+  margin-right: 0.4rem;
+}
+
+.btn > svg:last-child {
+  margin-left: 0.4rem;
 }
 
 @keyframes App-logo-spin {
