@@ -129,6 +129,11 @@ nav {
   color: var(--light-text);
 }
 
+.bookables-page {
+  display: flex;
+  justify-content: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
