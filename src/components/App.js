@@ -1,6 +1,10 @@
 import '../App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { FaCalendarAlt, FaDoorOpen, FaUsers } from 'react-icons/fa';
+import UserPicker from './Users/UserPicker';
+import BookingsPage from './Bookings/BookingsPage';
+import BookablesPage from './Bookables/BookablesPage';
+import UsersPage from './Users/UsersPage';
 
 function App() {
   return (
@@ -16,20 +20,26 @@ function App() {
                </Link>
              </li>
              <li>
-               <Link to='/bookabless' className='btn btn-header'>
+               <Link to='/bookables' className='btn btn-header'>
                  <FaDoorOpen/>
                  <span>Bookables</span>
                </Link>
              </li>
              <li>
-               <Link to='/bookings' className='btn btn-header'>
+               <Link to='/users' className='btn btn-header'>
                  <FaUsers/>
                  <span>Users</span>
                </Link>
              </li>
             </ul>
           </nav>
+          <UserPicker/>
         </header>
+        <Routes>
+          <Route path='/bookings' element={<BookingsPage/>}/>
+          <Route path='/bookables' element={<BookablesPage/>}/>
+          <Route path='/users' element={<UsersPage/>}/>
+        </Routes>
       </div>
     </Router>
   );
