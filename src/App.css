@@ -77,7 +77,7 @@ nav {
   margin: auto;
 }
 
-.btn {
+.btn, .nextBtn {
   background: var(--button-bg);
   color: var(--light-text);
   border: none;
@@ -116,15 +116,22 @@ nav {
   padding: 0;
 }
 
-.items-list-nav .btn {
-  width: 100%;
+.items-list-nav .btn, .nextBtn {
   background: var(--light-text);
   color: var(--dark-text);
   border: 1px solid rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease;
 }
 
-.items-list-nav .selected .btn {
+.items-list-nav .btn {
+  width: 100%;
+}
+
+.items-list-nav .nextBtn {
+  width: 50%;
+}
+
+.items-list-nav .selected .btn, .items-list-nav .nextBtn {
   background: var(--dark-text);
   color: var(--light-text);
 }
