@@ -8,7 +8,7 @@ export default function BookablesList() {
     const bookablesMatchingGroup = bookables.filter(bookable => bookable.group === group);
     const [bookableIndex, setBookableIndex] = useState(1);
     const handleBookableSelection = (index) => setBookableIndex(index);
-    const handleNextSelection = () => setBookableIndex(bookableIndex === bookablesMatchingGroup.length - 1 ? 0 : bookableIndex + 1);
+    const handleNextSelection = () => setBookableIndex((index) => index === bookablesMatchingGroup.length - 1 ? 0 : index + 1);
     return (
         <ul className='items-list-nav'>
             {bookablesMatchingGroup.map((item,i) => <li key={i} className={i === bookableIndex ? 'selected' : null}>
