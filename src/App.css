@@ -80,8 +80,6 @@ nav {
 .btn, .nextBtn {
   background: var(--button-bg);
   color: var(--light-text);
-  border: none;
-  border-radius: 1.5rem;
   padding: 0.5rem 1.5rem;
   margin-left:0.5rem;
   font-size: 1rem;
@@ -125,6 +123,15 @@ nav {
 
 .items-list-nav .btn {
   width: 100%;
+}
+
+.btn, .nextBtn, .items-list-nav > select {
+  border: none;
+  border-radius: 1.5rem;
+}
+
+.items-list-nav > select {
+  margin-bottom: 10px;
 }
 
 .items-list-nav .nextBtn {
