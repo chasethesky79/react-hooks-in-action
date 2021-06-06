@@ -6,7 +6,7 @@ export default function BookablesList() {
     const { bookables } = data;
     const bookablesMatchingGroup = bookables.filter(bookable => bookable.group === group);
     const [bookableIndex, setBookableIndex] = useState(1);
-    const handleBookableSelection = useCallback((index) => setBookableIndex(index), [])
+    const handleBookableSelection = (index) => setBookableIndex(index);
     return (
         <ul className='items-list-nav'>
             {bookablesMatchingGroup.map((item,i) => <li key={i} className={i === bookableIndex ? 'selected' : null}>
