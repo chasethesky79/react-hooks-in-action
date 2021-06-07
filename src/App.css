@@ -106,7 +106,6 @@ nav {
   margin: 1rem auto;
   padding: 0;
   list-style: none;
-  width: 20%;
 }
 
 .items-list-nav > li {
@@ -122,12 +121,13 @@ nav {
 }
 
 .items-list-nav .btn {
-  width: 100%;
+  width: 300px;
 }
 
 .btn, .nextBtn, .items-list-nav > select {
   border: none;
   border-radius: 1.5rem;
+  margin-top: 10px;
 }
 
 .items-list-nav > select {
@@ -143,9 +143,40 @@ nav {
   color: var(--light-text);
 }
 
-.bookables-page {
+.container { 
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex: 1 2 auto;
+  align-items: baseline;
+  width: auto;
+}
+
+.container > * {
+  margin-left: 80px;
+}
+.bookable-details-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.bookable-details {
+  display: flex;
+  justify-content: space-between;
+  background: black;
+  align-items: baseline;
+  color: var(--light-text);
+  margin-top: 20px;
+}
+.bookable-details-section > * {
+ width: 90%;
+}
+
+.bookable-details > * {
+  padding-left: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 @keyframes App-logo-spin {
