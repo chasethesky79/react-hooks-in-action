@@ -176,7 +176,7 @@ nav {
 .bookable-details > * {
   padding-left: 10px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 @keyframes App-logo-spin {
