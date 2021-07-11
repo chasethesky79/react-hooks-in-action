@@ -24,7 +24,10 @@ export default function BookablesList() {
         setBookableIndex(0);
         setBookable(bookablesMatchingGroup[0]);
     };
-    const handleNextSelection = () => setBookableIndex((index) => index === bookablesMatchingGroup.length - 1 ? 0 : index + 1);
+    const handleNextSelection = () => {
+        setBookableIndex(bookableIndex === bookablesMatchingGroup.length - 1 ? 0 : bookableIndex + 1);
+        setBookable(bookablesMatchingGroup[bookableIndex]);
+    }
     return (
         <div class="container">
            <div className='bookables-list'>
