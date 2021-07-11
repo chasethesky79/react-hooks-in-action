@@ -14,20 +14,12 @@ export default function BookablesList() {
     const [group, setGroup] = useState(groups[0]);
     const [showDetails, setShowDetails] = useState(true);
     const bookablesMatchingGroup = bookables.filter(bookable => bookable.group === group);
-    const [bookable, setBookable] = useState(bookablesMatchingGroup[bookableIndex]);
-    const handleBookableSelection = (index) => {
-         setBookableIndex(index);
-         setBookable(bookablesMatchingGroup[index]);
-    }
+    const handleBookableSelection = (index) => setBookableIndex(index);
     const handleGroupSelection = ({ target: { value }}) => {
         setGroup(value);
         setBookableIndex(0);
-        setBookable(bookablesMatchingGroup[0]);
     };
-    const handleNextSelection = () => {
-        setBookableIndex(bookableIndex === bookablesMatchingGroup.length - 1 ? 0 : bookableIndex + 1);
-        setBookable(bookablesMatchingGroup[bookableIndex]);
-    }
+    const handleNextSelection = () => setBookableIndex(bookableIndex === bookablesMatchingGroup.length - 1 ? 0 : bookableIndex + 1);
     return (
         <div class="container">
            <div className='bookables-list'>
@@ -49,14 +41,14 @@ export default function BookablesList() {
                 </div>
                 {showDetails && 
                  <div className='bookable-details-body'>
-                   <h3>{bookable.notes}</h3>
+                   <h3>{bookablesMatchingGroup[bookableIndex].notes}</h3>
                    <h3>Availability</h3>
                    <div className='bookable-details-info'>
                     <ul>
-                       {bookable.days.sort().map(day => <li key={day}>{days[day]}</li>)}
+                       {bookablesMatchingGroup[bookableIndex].days.sort().map(day => <li key={day}>{days[day]}</li>)}
                     </ul>
                     <ul>
-                       {bookable.sessions.sort().map(session => <li key={session}>{sessions[session]}</li>)}
+                       {bookablesMatchingGroup[bookableIndex].sessions.sort().map(session => <li key={session}>{sessions[session]}</li>)}
                     </ul>               
                    </div>
                 </div>}
