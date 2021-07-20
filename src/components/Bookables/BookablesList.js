@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import data from '../../static.json';
 import { FaArrowRight } from 'react-icons/fa';
+import BookableDetails from './BookableDetails';
 
 export default function BookablesList() {
-    const { bookables, sessions, days } = data;
+    const { bookables } = data;
     const groups = bookables.reduce((acc, element) => {
       if (!acc.includes(element.group)){
           acc = [...acc, element.group]
@@ -12,7 +13,6 @@ export default function BookablesList() {
     }, []);
     const [bookableIndex, setBookableIndex] = useState(1);
     const [group, setGroup] = useState(groups[0]);
-    const [showDetails, setShowDetails] = useState(true);
     const bookablesMatchingGroup = bookables.filter(bookable => bookable.group === group);
     const handleBookableSelection = (index) => setBookableIndex(index);
     const handleGroupSelection = ({ target: { value }}) => {
@@ -34,25 +34,7 @@ export default function BookablesList() {
                     <button onClick={handleNextSelection} className='nextBtn'><FaArrowRight/><span>&nbsp;Next</span></button>
                 </ul>
             </div>
-            <div class='bookable-details-section'>
-                <div className='bookable-details-header'>
-                    <h3>Projector</h3>
-                    <span><label><input type='checkbox' checked={showDetails} onChange={() => setShowDetails(!showDetails)}/>Show Details</label></span>
-                </div>
-                {showDetails && 
-                 <div className='bookable-details-body'>
-                   <h3>{bookablesMatchingGroup[bookableIndex].notes}</h3>
-                   <h3>Availability</h3>
-                   <div className='bookable-details-info'>
-                    <ul>
-                       {bookablesMatchingGroup[bookableIndex].days.sort().map(day => <li key={day}>{days[day]}</li>)}
-                    </ul>
-                    <ul>
-                       {bookablesMatchingGroup[bookableIndex].sessions.sort().map(session => <li key={session}>{sessions[session]}</li>)}
-                    </ul>               
-                   </div>
-                </div>}
-            </div>
+            <BookableDetails bookable={bookablesMatchingGroup[bookableIndex]}/>
         </div>
         
     )
