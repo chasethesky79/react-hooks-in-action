@@ -7,7 +7,7 @@ export default function BookableDetails({ bookable }) {
     return (
         <div class='bookable-details-section'>
                 <div className='bookable-details-header'>
-                    <h3>Projector</h3>
+                    <h3>{bookable.title}</h3>
                     <span><label><input type='checkbox' checked={showDetails} onChange={() => setShowDetails(!showDetails)}/>Show Details</label></span>
                 </div>
                 {showDetails && 
