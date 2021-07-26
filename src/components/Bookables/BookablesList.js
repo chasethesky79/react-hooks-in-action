@@ -28,7 +28,8 @@ export default function BookablesList() {
         type: 'SET_GROUP',
         payload: value
     })
-    const handleNextSelection = () => dispatch({ type: 'NEXT_BOOKABLE' })
+    const handleNextSelection = () => dispatch({ type: 'NEXT_BOOKABLE' });
+    const handleShowDetailsToggled = () => dispatch({ type: 'TOGGLE_SHOW_DETAILS'})
     return (
         <div className="container">
            <div className='bookables-list'>
@@ -43,7 +44,7 @@ export default function BookablesList() {
                     <button onClick={handleNextSelection} className='nextBtn'><FaArrowRight/><span>&nbsp;Next</span></button>
                 </ul>
             </div>
-            <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]}/>
+            <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]} showDetails={state.showDetails} handleShowDetailsToggled={handleShowDetailsToggled}/>
         </div>
         
     )
