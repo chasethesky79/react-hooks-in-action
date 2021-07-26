@@ -5,7 +5,7 @@ export default function BookableDetails({ bookable }) {
     const { sessions, days } = data;
     const [showDetails, setShowDetails] = useState(true);
     return (
-        <div class='bookable-details-section'>
+        <div className='bookable-details-section'>
                 <div className='bookable-details-header'>
                     <h3>{bookable.title}</h3>
                     <span><label><input type='checkbox' checked={showDetails} onChange={() => setShowDetails(!showDetails)}/>Show Details</label></span>
