@@ -4,12 +4,13 @@ function addDays(date, daysToAdd) {
     return clone;
 }
 export default function getWeek(date, daysToOffset = 0) {
-    const dayOfTheWeek = addDays(date.getDay(), daysToOffset);
-    const start = addDays(date, -dayOfTheWeek);
-    const end = addDays(date, 6 - dayOfTheWeek);
+    const calculatedDate = addDays(date, daysToOffset);
+    const dayOfTheWeek = calculatedDate?.getDay();
+    const start = addDays(calculatedDate, -dayOfTheWeek);
+    const end = addDays(calculatedDate, 6 - dayOfTheWeek);
     return {
-      date,
-      start,
-      end
-    }
+        date,
+        start,
+        end
+      };
 }

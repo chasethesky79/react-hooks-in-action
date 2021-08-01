@@ -1,7 +1,7 @@
 import getWeek from "../utils/date-wrangler";
 
 export default function weekReducer(state, action) {
-    switch (action.type) {
+    switch (action?.type) {
         case 'GET_CURRENT_WEEK':
             return getWeek(new Date());
         case 'GET_PREV_WEEK':
