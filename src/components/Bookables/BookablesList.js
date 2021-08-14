@@ -3,7 +3,6 @@ import data from '../../static.json';
 import { FaArrowRight } from 'react-icons/fa';
 import BookableDetails from './BookableDetails';
 import reducer from '../Bookables/reducer';
-import getWeek from '../../utils/date-wrangler';
 
 export default function BookablesList() {
     const { bookables } = data;
