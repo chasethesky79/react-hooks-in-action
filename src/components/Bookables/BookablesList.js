@@ -56,7 +56,7 @@ export default function BookablesList() {
         return <p>{error.message}</p>
     }
     if (isLoading) {
-        return <FaSpinner className='icon-loading'/>
+        return <p><FaSpinner className='icon-loading'/>Loading bookables...</p>
     }
     return (
         <div className="container">
