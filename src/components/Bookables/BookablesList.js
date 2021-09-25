@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import BookableDetails from './BookableDetails';
-import reducer from '../Bookables/reducer';
+import BookableReducer from './BookableReducer';
 import getData from '../../utils/api';
 import { FaSpinner } from "react-icons/fa";
 
@@ -15,7 +15,7 @@ const initialState = {
 }
 
 export default function BookablesList() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(BookableReducer, initialState);
     useEffect(() => {
         async function fetchBookables() {
             dispatch({ type: 'FETCH_BOOKABLES_REQUEST'});

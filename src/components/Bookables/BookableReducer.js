@@ -1,4 +1,4 @@
-export default function reducer(state, action) {
+export default function BookableReducer(state, action) {
     switch(action.type) {
         case 'SET_GROUP':
             return {
