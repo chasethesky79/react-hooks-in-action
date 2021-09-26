@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import BookableDetails from './BookableDetails';
 import BookableReducer from './BookableReducer';
@@ -16,6 +16,7 @@ const initialState = {
 
 export default function BookablesList() {
     const [state, dispatch] = useReducer(BookableReducer, initialState);
+    const bookableRef = useRef(null);
     useEffect(() => {
         async function fetchBookables() {
             dispatch({ type: 'FETCH_BOOKABLES_REQUEST'});
@@ -25,6 +26,8 @@ export default function BookablesList() {
                     type: 'FETCH_BOOKABLES_SUCCESS',
                     payload: bookables
                 });
+                bookableRef.current = setInterval(handleNextSelection , 3000);
+                return handleStopPresentation;
             } catch (error) {
                 dispatch({
                     type: 'FETCH_BOOKABLES_FAILURE',
@@ -33,7 +36,7 @@ export default function BookablesList() {
             }
         }
         fetchBookables();
-    }, [])
+    }, []);
     const { bookables, error, isLoading } = state;
     const groups = bookables.reduce((acc, element) => {
         if (!acc.includes(element.group)){
@@ -52,6 +55,7 @@ export default function BookablesList() {
     })
     const handleNextSelection = () => dispatch({ type: 'NEXT_BOOKABLE' });
     const handleShowDetailsToggled = () => dispatch({ type: 'TOGGLE_SHOW_DETAILS'});
+    const handleStopPresentation = () => clearInterval(bookableRef.current);
     if (error) {
         return <p>{error.message}</p>
     }
@@ -72,7 +76,8 @@ export default function BookablesList() {
                     <button onClick={handleNextSelection} className='nextBtn'><FaArrowRight/><span>&nbsp;Next</span></button>
                 </ul>
             </div>
-            <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]} showDetails={state.showDetails} handleShowDetailsToggled={handleShowDetailsToggled}/>
+            {state.bookableIndex >= 0 && <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]} showDetails={state.showDetails} handleShowDetailsToggled={handleShowDetailsToggled}/>}
+            <button className='btn' onClick = {handleStopPresentation}>Stop</button>
         </div>        
     )
 }

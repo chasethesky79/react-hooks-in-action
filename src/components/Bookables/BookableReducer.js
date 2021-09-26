@@ -13,6 +13,7 @@ export default function BookableReducer(state, action) {
             }
         case 'NEXT_BOOKABLE':
             const count = state.bookables.filter(bookable => bookable.group === state.group).length;
+            console.log(`NEXT BOOKABLE INDEX ${count}, ${state.bookableIndex} ${(state.bookableIndex + 1) % count}`);
             return {
                 ...state,
                 bookableIndex: (state.bookableIndex + 1) % count
