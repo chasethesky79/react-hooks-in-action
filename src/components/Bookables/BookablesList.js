@@ -26,8 +26,6 @@ export default function BookablesList() {
                     type: 'FETCH_BOOKABLES_SUCCESS',
                     payload: bookables
                 });
-                bookableRef.current = setInterval(handleNextSelection , 3000);
-                return handleStopPresentation;
             } catch (error) {
                 dispatch({
                     type: 'FETCH_BOOKABLES_FAILURE',
@@ -45,10 +43,13 @@ export default function BookablesList() {
         return acc;
       }, []);
     const bookablesMatchingGroup = bookables.filter(bookable => bookable.group === state.group);
-    const handleBookableSelection = (bookableIndex) => dispatch({
-        type: 'SET_BOOKABLE',
-        payload: bookableIndex
-    })
+    const handleBookableSelection = (bookableIndex) => {
+        dispatch({
+            type: 'SET_BOOKABLE',
+            payload: bookableIndex
+        });
+        bookableRef.current.focus();
+    }
     const handleGroupSelection = ({ target: { value }}) => dispatch({
         type: 'SET_GROUP',
         payload: value
@@ -72,8 +73,8 @@ export default function BookablesList() {
                 </select>
                <ul className='items-list-nav'>
                     {bookablesMatchingGroup.map((item,i) => <li key={i} className={i === state.bookableIndex ? 'selected' : null}>
-                        <button className='btn' onClick={() => handleBookableSelection(i)}>{item.title}</button></li>)}
-                    <button onClick={handleNextSelection} className='nextBtn'><FaArrowRight/><span>&nbsp;Next</span></button>
+                    <button className='btn' onClick={() => handleBookableSelection(i)}>{item.title}</button></li>)}
+                    <button ref={bookableRef} onClick={handleNextSelection} className='nextBtn' autoFocus><FaArrowRight/><span>&nbsp;Next</span></button>
                 </ul>
             </div>
             {state.bookableIndex >= 0 && <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]} showDetails={state.showDetails} handleShowDetailsToggled={handleShowDetailsToggled}/>}
