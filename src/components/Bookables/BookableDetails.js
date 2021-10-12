@@ -1,12 +1,15 @@
 import data from '../../static.json';
+import { useEffect, useState } from 'react';
 
-export default function BookableDetails({ bookable, showDetails, handleShowDetailsToggled }) {
+export default function BookableDetails({ bookable }) {
     const { sessions, days } = data;
+    const [showDetails, setShowDetails] = useState(false);
+    useEffect(() => setShowDetails(false), [bookable]);    
     return (
         <div className='bookable-details-section'>
             <div className='bookable-details-header'>
                 <h3>{bookable.title}</h3>
-                <span><label><input type='checkbox' checked={showDetails} onChange={handleShowDetailsToggled}/>Show Details</label></span>
+                <span><label><input type='checkbox' checked={showDetails} onChange={() => setShowDetails(showDetails => !showDetails)}/>Show Details</label></span>
             </div>
             {showDetails && 
                 <div className='bookable-details-body'>

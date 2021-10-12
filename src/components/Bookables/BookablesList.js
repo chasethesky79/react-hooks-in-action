@@ -15,7 +15,6 @@ export default function BookablesList() {
     const initialState = {
         group: 'Rooms',
         bookableIndex: 0,
-        showDetails: true,
         bookables
     }
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -29,7 +28,6 @@ export default function BookablesList() {
         payload: value
     })
     const handleNextSelection = () => dispatch({ type: 'NEXT_BOOKABLE' });
-    const handleShowDetailsToggled = () => dispatch({ type: 'TOGGLE_SHOW_DETAILS'})
     return (
         <div className="container">
            <div className='bookables-list'>
@@ -38,13 +36,13 @@ export default function BookablesList() {
                     onChange={handleGroupSelection}>
                     {groups.map((group, index) => <option key={index} value={group} >{group}</option>)}
                 </select>
-               <ul className='items-list-nav'>
+                <ul className='items-list-nav'>
                     {bookablesMatchingGroup.map((item,i) => <li key={i} className={i === state.bookableIndex ? 'selected' : null}>
                         <button className='btn' onClick={() => handleBookableSelection(i)}>{item.title}</button></li>)}
                     <button onClick={handleNextSelection} className='nextBtn'><FaArrowRight/><span>&nbsp;Next</span></button>
                 </ul>
             </div>
-            <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]} showDetails={state.showDetails} handleShowDetailsToggled={handleShowDetailsToggled}/>
+            <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]}/>
         </div>
         
     )
