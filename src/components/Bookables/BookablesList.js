@@ -8,7 +8,7 @@ export default function BookablesList() {
     const { bookables } = data;
     const groups = bookables.reduce((acc, element) => {
       if (!acc.includes(element.group)){
-          acc = [...acc, element.group]
+          return [...acc, element.group]
       }
       return acc;
     }, []);
