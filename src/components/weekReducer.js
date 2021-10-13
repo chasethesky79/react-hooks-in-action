@@ -9,6 +9,7 @@ export default function weekReducer(state, action) {
         case 'GET_NEXT_WEEK':
             return getWeek(state.date, 7);
         case 'GET_WEEK_FOR_DATE':
+        case 'SET_DATE':
             return getWeek(action.payload);
         default:
             return state;

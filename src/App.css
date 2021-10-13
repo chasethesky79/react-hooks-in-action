@@ -207,6 +207,12 @@ nav {
   margin-top: 10px;
 }
 
+.icon-loading {
+  animation: spin 1.5s linear infinite;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
