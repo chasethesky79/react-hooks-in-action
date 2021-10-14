@@ -1,20 +1,9 @@
-import { useReducer, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
-import BookableDetails from './BookableDetails';
-import BookableReducer from './BookableReducer';
 import getData from '../../utils/api';
 import { FaSpinner } from "react-icons/fa";
 
-export default function BookablesList() {
-    const initialState = {
-        group: 'Rooms',
-        bookableIndex: 0,
-        showDetails: true,
-        bookables: [],
-        isLoading: true,
-        error: false
-    }
-    const [state, dispatch] = useReducer(BookableReducer, initialState);
+export default function BookablesList({ state, dispatch }) {
     const bookableRef = useRef(null);
     useEffect(() => {
         async function fetchBookables() {
@@ -33,7 +22,7 @@ export default function BookablesList() {
             }
         }
         fetchBookables();
-    }, []);
+    }, [dispatch]);
     const { bookables, error, isLoading } = state;
     const groups = bookables.reduce((acc, element) => {
         if (!acc.includes(element.group)){
@@ -75,7 +64,6 @@ export default function BookablesList() {
                     <button ref={bookableRef} onClick={handleNextSelection} className='nextBtn' autoFocus><FaArrowRight/><span>&nbsp;Next</span></button>
                 </ul>
             </div>
-            {state.bookableIndex >= 0 && <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]}/>}
             <button className='btn' onClick = {handleStopPresentation}>Stop</button>
         </div>    
     )
