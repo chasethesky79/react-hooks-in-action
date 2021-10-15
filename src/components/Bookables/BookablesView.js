@@ -18,7 +18,7 @@ export default function BookablesView() {
     return (
        <div className='container'>
             <BookablesList state={state} dispatch={dispatch}/>
-            <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]}/>
+            {bookablesMatchingGroup.length > 0 && <BookableDetails bookable={bookablesMatchingGroup[state.bookableIndex]}/>}
        </div>
     )
 }

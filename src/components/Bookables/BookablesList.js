@@ -23,6 +23,7 @@ export default function BookablesList({ state, dispatch }) {
         }
         fetchBookables();
     }, [dispatch]);
+    console.log(`STATE IN BOOKABLESLIST ${JSON.stringify(state)}`);
     const { bookables, error, isLoading } = state;
     const groups = bookables.reduce((acc, element) => {
         if (!acc.includes(element.group)){
